@@ -3,6 +3,7 @@ use crate::network::inbound_queue::NextPacketDelivery;
 use crate::network::node::{Node, UdpEndpoint};
 use crate::pcap_exporter::PcapExporter;
 use crate::transmit::OwnedTransmit;
+use bytes::Bytes;
 use cfg_if::cfg_if;
 use parking_lot::Mutex;
 use quinn::udp::{RecvMeta, Transmit};
@@ -73,7 +74,7 @@ impl AsyncUdpSocket for InMemoryUdpSocket {
             OwnedTransmit {
                 destination: transmit.destination,
                 ecn: transmit.ecn,
-                contents: transmit.contents.to_vec(),
+                contents: Bytes::copy_from_slice(transmit.contents),
                 segment_size: transmit.segment_size,
             },
         );

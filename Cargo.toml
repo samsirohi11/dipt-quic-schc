@@ -6,6 +6,7 @@ resolver = "2"
 anyhow = "1.0.86"
 async-lock = "3.4.0"
 bon = "3.3.0"
+bytes = "1.11.1"
 cfg-if = "1.0.0"
 clap = { version = "4", features = ["derive"] }
 console = "0.15.11"
