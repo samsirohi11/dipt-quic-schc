@@ -7,6 +7,8 @@ use std::process::Command;
 struct Cli {
     #[arg(long)]
     test_name: Option<String>,
+    #[arg(short, long, action = clap::ArgAction::Count)]
+    quiet: u8,
 }
 
 struct TestCase {
@@ -102,9 +104,12 @@ fn main() -> anyhow::Result<()> {
     let mut errored = false;
     for test_case in test_cases {
         let name = test_case.name.clone();
-        if let Err(e) =
-            run_quinn_workbench(test_case, &expected_stdout_file, &expected_replay_log_file)
-        {
+        if let Err(e) = run_quinn_workbench(
+            test_case,
+            &expected_stdout_file,
+            &expected_replay_log_file,
+            cli.quiet,
+        ) {
             println!("Error running golden test `{name}`");
             match e {
                 TestError::Internal(e) => println!("{e:?}"),
@@ -150,6 +155,7 @@ fn run_quinn_workbench(
     test_case: TestCase,
     expected_stdout_file: &str,
     expected_replay_log_file: &str,
+    quiet: u8,
 ) -> Result<(), TestError> {
     println!("Running `{}`...", test_case.name);
     let workbench_args = test_case.args.split_whitespace();
@@ -170,7 +176,11 @@ fn run_quinn_workbench(
         Some(expected_stdout) => {
             if expected_stdout != stdout {
                 println!("... calculating stdout diff");
-                stdout_diff = Some(diff::diff_to_string(&expected_stdout, &stdout));
+                if quiet < 2 {
+                    stdout_diff = Some(diff::diff_to_string(&expected_stdout, &stdout));
+                } else {
+                    stdout_diff = Some("<skipped>".to_string());
+                }
             }
         }
         None => {
@@ -185,8 +195,12 @@ fn run_quinn_workbench(
     match test_case.expected_replay_log {
         Some(expected_replay_log) => {
             if expected_replay_log != replay_log {
-                println!("... calculating replay log diff");
-                replay_log_diff = Some(diff::diff_to_string(&expected_replay_log, &replay_log));
+                if quiet < 1 {
+                    println!("... calculating replay log diff");
+                    replay_log_diff = Some(diff::diff_to_string(&expected_replay_log, &replay_log));
+                } else {
+                    replay_log_diff = Some("<skipped>".to_string());
+                }
             }
         }
         None => {

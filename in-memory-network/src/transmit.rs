@@ -1,3 +1,4 @@
+use bytes::Bytes;
 use quinn::udp::{EcnCodepoint, Transmit};
 use std::net::SocketAddr;
 
@@ -12,7 +13,7 @@ pub struct OwnedTransmit {
     /// Explicit congestion notification bits to set on the packet
     pub ecn: Option<EcnCodepoint>,
     /// Contents of the datagram
-    pub contents: Vec<u8>,
+    pub contents: Bytes,
     /// The segment size if this transmission contains multiple datagrams.
     /// This is `None` if the transmit only contains a single datagram
     pub segment_size: Option<usize>,
@@ -29,7 +30,7 @@ impl OwnedTransmit {
         UDP_OVERHEAD + ip_overhead + self.contents.len()
     }
 
-    pub fn as_transmit(&self) -> Transmit {
+    pub fn as_transmit(&self) -> Transmit<'_> {
         Transmit {
             destination: self.destination,
             ecn: self.ecn,

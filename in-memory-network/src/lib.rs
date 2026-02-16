@@ -332,7 +332,7 @@ mod test {
             OwnedTransmit {
                 destination: server_node.quic_addr(),
                 ecn: None,
-                contents: b"hello world".to_vec(),
+                contents: b"hello world".to_vec().into(),
                 segment_size: None,
             },
         );
@@ -396,7 +396,7 @@ mod test {
                     OwnedTransmit {
                         destination: server_node.quic_addr(),
                         ecn: None,
-                        contents: vec![42; 1200],
+                        contents: vec![42; 1200].into(),
                         segment_size: None,
                     },
                 );
@@ -476,7 +476,7 @@ mod test {
             OwnedTransmit {
                 destination: server_socket.quic_addr(),
                 ecn: None,
-                contents: vec![42; 1200],
+                contents: vec![42; 1200].into(),
                 segment_size: None,
             },
         );

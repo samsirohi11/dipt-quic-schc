@@ -12,14 +12,13 @@ rt-custom = ["dep:sittard"]
 [dependencies]
 anyhow.workspace = true
 async-lock.workspace = true
+bytes.workspace = true
 cfg-if.workspace = true
-event-listener.workspace = true
 fastrand.workspace = true
 futures.workspace = true
 futures-util.workspace = true
 parking_lot.workspace = true
 pcap-file.workspace = true
-pin-project-lite.workspace = true
 pnet_packet.workspace = true
 quinn.workspace = true
 uuid.workspace = true

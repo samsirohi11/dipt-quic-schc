@@ -1,14 +1,11 @@
 use crate::network::InMemoryNetwork;
 use crate::network::inbound_queue::InboundQueue;
-use crate::network::link::NetworkLink;
 use crate::network::outbound_buffer::OutboundBuffer;
 use crate::network::spec::{NetworkNodeSpec, NodeKind};
 use crate::{HOST_PORT, InTransitData};
 use anyhow::bail;
-use event_listener::Event;
 use parking_lot::Mutex;
 use std::net::{IpAddr, SocketAddr};
-use std::ops::ControlFlow;
 use std::sync::Arc;
 
 pub struct Node {
@@ -82,29 +79,6 @@ impl Node {
         };
 
         Ok((node, rx))
-    }
-
-    pub(crate) async fn sleep_until_ready_to_send(
-        &self,
-        network: &Arc<InMemoryNetwork>,
-        data: &InTransitData,
-    ) -> Arc<Mutex<NetworkLink>> {
-        let cancellation_token = Event::new();
-        let mut futures = Vec::new();
-        network.walk_links::<()>(self, data.transmit.destination.ip(), |link| {
-            futures.push(NetworkLink::sleep_until_ready_to_send(
-                link.clone(),
-                cancellation_token.listen(),
-            ));
-            ControlFlow::Continue(())
-        });
-
-        let link = futures_util::future::select_all(futures).await.0.unwrap();
-
-        // Ensure the other links stop waiting for this packet to be sendable
-        cancellation_token.notify(cancellation_token.total_listeners());
-
-        link
     }
 
     pub(crate) fn enqueue_outbound(&self, network: &Arc<InMemoryNetwork>, data: InTransitData) {

@@ -16,6 +16,7 @@ use crate::async_rt;
 use crate::async_rt::time::Instant;
 use crate::network::event::{NetworkEventPayload, NetworkEvents};
 use crate::network::inbound_queue::InboundQueue;
+use crate::network::link::OutgoingPacket;
 use crate::network::node::Node;
 use crate::network::spec::{NetworkSpec, NodeKind};
 use crate::pcap_exporter::PcapExporterFactory;
@@ -27,9 +28,8 @@ use fastrand::Rng;
 use futures_util::StreamExt;
 use link::NetworkLink;
 use parking_lot::Mutex;
-use quinn::udp::EcnCodepoint;
 use route::Route;
-use std::collections::HashMap;
+use std::collections::{HashMap, VecDeque};
 use std::net::IpAddr;
 use std::ops::ControlFlow;
 use std::sync::Arc;
@@ -123,7 +123,9 @@ impl InMemoryNetwork {
             let source = l.source;
             let target = l.target;
 
-            let l = Arc::new(Mutex::new(NetworkLink::new(l, tracer.clone())));
+            let (l, rx) = NetworkLink::new(l, tracer.clone());
+            let l = Arc::new(Mutex::new(l));
+            let l_cp = l.clone();
             let conflicting_link = links_by_addr.insert((source, target), l.clone());
             if let Some(conflicting_link) = conflicting_link {
                 bail!(
@@ -139,6 +141,8 @@ impl InMemoryNetwork {
             if conflicting_link.is_some() {
                 bail!("there is more than one link with id {}", id,);
             }
+
+            async_rt::spawn(async move { process_link_queue(l_cp, rx).await });
         }
 
         for r in routers {
@@ -315,7 +319,7 @@ impl InMemoryNetwork {
                 OwnedTransmit {
                     destination: target.udp_endpoint.as_ref().unwrap().addr,
                     ecn: None,
-                    contents: vec![42],
+                    contents: vec![42].into(),
                     segment_size: None,
                 },
             );
@@ -362,27 +366,17 @@ impl InMemoryNetwork {
         }
     }
 
-    /// Resolves the link that should be used to go from the node to the destination
-    fn resolve_link(
-        &self,
-        node: &Node,
-        data: &InTransitData,
-    ) -> Result<Arc<Mutex<NetworkLink>>, bool> {
-        let mut has_links = false;
-        let link = self.walk_links(node, data.transmit.destination.ip(), |link| {
-            has_links = true;
-
-            if link.lock().has_bandwidth_available() {
-                ControlFlow::Break(link.clone())
-            } else {
-                ControlFlow::Continue(())
-            }
-        });
-
-        link.ok_or(has_links)
+    /// Returns true if there is a route from `node` to `dest`, even if the route is inactive at the
+    /// moment because the link is down
+    fn has_route_to(&self, node: &Node, dest: IpAddr) -> bool {
+        self.walk_links(node, dest, |_link| ControlFlow::Break(true))
+            .unwrap_or(false)
     }
 
-    /// Walk links in the order in which they would be chosen when sending a packet
+    /// Walk links that could potentially route a packet from `node` to `dest`
+    ///
+    /// Note: this function does not discard links that are down, because in a space setting they
+    /// are expected to come up again eventually
     fn walk_links<T>(
         &self,
         node: &Node,
@@ -494,6 +488,31 @@ impl InMemoryNetwork {
             current_node.enqueue_outbound(self, duplicate);
         }
     }
+
+    fn generate_packet_anomalies(&self, link: &Mutex<NetworkLink>) -> PacketAnomalies {
+        let congestion_experienced;
+        let mut extra_delay = Duration::from_secs(0);
+
+        // Concurrency: limit the lock guard's lifetime
+        {
+            let link = link.lock();
+            if self.rng.lock().f64() < link.extra_delay_ratio {
+                extra_delay = link.extra_delay;
+            }
+
+            congestion_experienced = self.rng.lock().f64() < link.congestion_event_ratio;
+        }
+
+        PacketAnomalies {
+            congestion_experienced,
+            extra_delay,
+        }
+    }
+}
+
+pub(crate) struct PacketAnomalies {
+    congestion_experienced: bool,
+    extra_delay: Duration,
 }
 
 fn spawn_node_buffer_processors(
@@ -514,55 +533,73 @@ async fn process_buffer_for_node(
     node: Arc<Node>,
     mut outbound_rx: futures::channel::mpsc::UnboundedReceiver<InTransitData>,
 ) {
-    while let Some(mut data) = outbound_rx.next().await {
-        let link = match network.resolve_link(&node, &data) {
-            Ok(link) => link,
-            Err(true) => {
-                // No link available at the moment, sleep until a link becomes available
-                node.sleep_until_ready_to_send(&network, &data).await
-            }
-            Err(false) => {
-                // No route available at all!
-                let nodes = network.tracer.stepper().get_packet_path(data.id);
-                let mut path = nodes.join(" -> ");
-                path.push_str(" -> ?");
+    while let Some(data) = outbound_rx.next().await {
+        if !network.has_route_to(&node, data.transmit.destination.ip()) {
+            // Fatal error: there is no route to the destination!
+            let nodes = network.tracer.stepper().get_packet_path(data.id);
+            let mut path = nodes.join(" -> ");
+            path.push_str(" -> ?");
 
-                println!(
-                    "Network error: missing link to {} ({path})",
-                    data.transmit.destination
-                );
-                return;
-            }
-        };
-
-        node.outbound_buffer().release(data.transmit.packet_size());
-        let congestion_experienced;
-        let mut extra_delay = Duration::from_secs(0);
-
-        // Concurrency: limit the lock guard's lifetime
-        {
-            let link = link.lock();
-            if network.rng.lock().f64() < link.extra_delay_ratio {
-                extra_delay = link.extra_delay;
-            }
-
-            congestion_experienced = network.rng.lock().f64() < link.congestion_event_ratio;
-        }
-
-        if congestion_experienced {
-            // The Quinn-provided transmit must indicate support for ECN
-            assert!(
-                data.transmit
-                    .ecn
-                    .is_some_and(|codepoint| codepoint as u8 == 0b10 || codepoint as u8 == 0b01)
+            println!(
+                "Fatal network error: missing route to {} ({path})",
+                data.transmit.destination
             );
-
-            // Set explicit congestion event codepoint
-            data.transmit.ecn = Some(EcnCodepoint::from_bits(0b11).unwrap())
+            return;
         }
 
-        link.lock().send(&node, data, extra_delay);
-        link.lock().notify_packet_sent.notify(usize::MAX);
+        let (sent_tx, sent_rx) = tokio::sync::watch::channel(false);
+
+        // Trigger sending through all links, in order of priority (cheaper = better). The first
+        // one to complete wins and the rest will discard the packet.
+        let mut links = VecDeque::new();
+        network.walk_links(&node, data.transmit.destination.ip(), |link| {
+            links.push_back(link.clone());
+            ControlFlow::Continue::<(), ()>(())
+        });
+
+        for link in links.clone() {
+            let anomalies = network.generate_packet_anomalies(&link);
+            link.lock()
+                .outgoing_queue
+                .unbounded_send(OutgoingPacket {
+                    src_node: node.clone(),
+                    data: data.clone(),
+                    anomalies,
+                    preferred_links: links.clone(),
+                    sent_tx: sent_tx.clone(),
+                    sent_rx: sent_rx.clone(),
+                })
+                .expect("the receiver end is active until all senders are dropped");
+        }
+    }
+}
+
+async fn process_link_queue(
+    link: Arc<Mutex<NetworkLink>>,
+    mut packet_rx: futures::channel::mpsc::UnboundedReceiver<OutgoingPacket>,
+) {
+    while let Some(mut packet) = packet_rx.next().await {
+        if !link.lock().has_bandwidth_available() {
+            // Wait until there is enough bandwidth and the link is up. Waiting will be cancelled if
+            // the packet gets sent in the meantime.
+            NetworkLink::sleep_until_ready_to_send(link.clone(), &mut packet.sent_rx).await;
+        }
+
+        while let Some(preferred_link) = packet.preferred_links.pop_front()
+            && !Arc::ptr_eq(&link, &preferred_link)
+            && !packet.already_sent()
+        {
+            // We are not the preferred link, so we should give other links a chance to send before
+            // us
+            tokio::task::yield_now().await;
+        }
+
+        // Ready to send
+        if !packet.already_sent() {
+            packet.sent_tx.send(true).ok();
+            link.lock()
+                .send(&packet.src_node, packet.data, packet.anomalies);
+        }
     }
 }
 
@@ -570,11 +607,14 @@ fn spawn_packet_forwarders(network: Arc<InMemoryNetwork>) {
     for link in network.links_by_id.values() {
         let network = network.clone();
         let link = link.clone();
-        async_rt::spawn(forward_packets_for_link(network, link));
+        async_rt::spawn(forward_packets_from_link_to_node(network, link));
     }
 }
 
-async fn forward_packets_for_link(network: Arc<InMemoryNetwork>, link: Arc<Mutex<NetworkLink>>) {
+async fn forward_packets_from_link_to_node(
+    network: Arc<InMemoryNetwork>,
+    link: Arc<Mutex<NetworkLink>>,
+) {
     loop {
         let next_delivered_packets = {
             // Ensure we aren't holding the lock after this block

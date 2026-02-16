@@ -152,6 +152,17 @@ Here's the meaning of the different parameters:
 The tool is self-documenting, so running it with `--help` will show up-to-date information about
 command line arguments.
 
+## Routing
+
+When a node receives a packet that should be forwarded, routing happens as follows: if the node's buffer does not have enough capacity, drop the packet; otherwise, enqueue the packet so it gets sent through the first link that becomes available. Here are some notes to clarify the details:
+
+1. Links handle outgoing packets in a FIFO manner.
+2. A link is considered available when it is both up and has enough bandwidth to send a given packet.
+3. The outgoing link is not chosen when the packet is received by the node, but when the packet can actually get sent to the next hop (i.e., when a suitable link is found which is up and has enough bandwidth for sending).
+4. When multiple links are available at the same time, the cheapest one gets to send the packet (according to the link's `cost` field in the configured network topology).
+
+A side-effect of the simulator's routing mechanism is that we automatically "load balance" packets when one of the links is saturated. Such a link is considered unavailable (not enough bandwidth), so if a second link is available towards the same destination, the packet will be routed through it instead of the saturated one.
+
 ## Validation
 
 Simulating an IP network is complex, so we need to ensure the implementation is actually sound. For

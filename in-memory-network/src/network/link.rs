@@ -1,16 +1,18 @@
 use crate::InTransitData;
 use crate::async_rt;
 use crate::async_rt::time::Instant;
+use crate::network::PacketAnomalies;
 use crate::network::event::UpdateLinkStatus;
 use crate::network::inbound_queue::{InboundQueue, NextPacketDelivery};
 use crate::network::node::Node;
 use crate::network::spec::NetworkLinkSpec;
 use crate::tracing::tracer::SimulationStepTracer;
 use async_lock::Semaphore;
-use event_listener::{Event, EventListener};
 use futures_util::future::Shared;
 use futures_util::{FutureExt, select_biased};
 use parking_lot::Mutex;
+use quinn::udp::EcnCodepoint;
+use std::collections::VecDeque;
 use std::mem;
 use std::net::IpAddr;
 use std::sync::Arc;
@@ -20,14 +22,16 @@ pub struct NetworkLink {
     pub id: Arc<str>,
     pub target: IpAddr,
     tracer: Arc<SimulationStepTracer>,
+    // Packets currently in flight from the source to the destination
     in_transit: Arc<Mutex<InboundQueue>>,
+    // Packets waiting to be sent (i.e., link up + enough bandwidth)
+    pub(crate) outgoing_queue: futures::channel::mpsc::UnboundedSender<OutgoingPacket>,
     pacer: Mutex<PacketPacer>,
     sleep_until_ready_to_send_semaphore: Arc<Semaphore>,
     status: LinkStatus,
     last_down: Option<async_rt::time::Instant>,
     delay: Duration,
     pub(crate) bandwidth_bps: usize,
-    pub(crate) notify_packet_sent: Arc<Event>,
     pub(crate) congestion_event_ratio: f64,
     pub(crate) extra_delay: Duration,
     pub(crate) extra_delay_ratio: f64,
@@ -66,23 +70,32 @@ impl LinkStatus {
 }
 
 impl NetworkLink {
-    pub(crate) fn new(l: NetworkLinkSpec, tracer: Arc<SimulationStepTracer>) -> Self {
-        Self {
+    pub(crate) fn new(
+        l: NetworkLinkSpec,
+        tracer: Arc<SimulationStepTracer>,
+    ) -> (
+        Self,
+        futures::channel::mpsc::UnboundedReceiver<OutgoingPacket>,
+    ) {
+        let (queue_tx, queue_rx) = futures::channel::mpsc::unbounded();
+        let self_ = Self {
             id: l.id,
             status: LinkStatus::Up,
             last_down: None,
             tracer,
             target: l.target,
             in_transit: Arc::new(Mutex::new(InboundQueue::new())),
+            outgoing_queue: queue_tx,
             pacer: Mutex::new(PacketPacer::new(l.bandwidth_bps)),
             sleep_until_ready_to_send_semaphore: Arc::new(Semaphore::new(1)),
             delay: l.delay,
             bandwidth_bps: l.bandwidth_bps as usize,
-            notify_packet_sent: Arc::new(Event::new()),
             congestion_event_ratio: l.congestion_event_ratio,
             extra_delay: l.extra_delay,
             extra_delay_ratio: l.extra_delay_ratio,
-        }
+        };
+
+        (self_, queue_rx)
     }
 
     pub(crate) fn was_down_after(&self, instant: Instant) -> bool {
@@ -124,68 +137,78 @@ impl NetworkLink {
         }
     }
 
-    pub(crate) fn send(&mut self, current_node: &Node, data: InTransitData, extra_delay: Duration) {
+    pub(crate) fn send(
+        &mut self,
+        src_node: &Node,
+        mut data: InTransitData,
+        anomalies: PacketAnomalies,
+    ) {
         // Sanity checks
         assert!(self.pacer.lock().can_send(Instant::now()));
         assert!(matches!(self.status, LinkStatus::Up));
 
+        // Apply "congestion experience" anomaly if requested
+        if anomalies.congestion_experienced {
+            // Sanity check: the Quinn-provided transmit must indicate support for ECN
+            assert!(
+                data.transmit
+                    .ecn
+                    .is_some_and(|codepoint| codepoint as u8 == 0b10 || codepoint as u8 == 0b01)
+            );
+
+            data.transmit.ecn = Some(EcnCodepoint::from_bits(0b11).unwrap())
+        }
+
         // Record
-        self.tracer
-            .track_packet_in_transit(current_node, self, &data);
+        self.tracer.track_packet_in_transit(src_node, self, &data);
 
         // Send
         self.pacer
             .lock()
             .track_send(Instant::now(), data.transmit.packet_size());
-        self.in_transit.lock().send(data, self.delay + extra_delay);
+        src_node
+            .outbound_buffer()
+            .release(data.transmit.packet_size());
+        self.in_transit
+            .lock()
+            .send(data, self.delay + anomalies.extra_delay);
     }
 
-    pub(crate) fn sleep_until_ready_to_send(
+    pub(crate) async fn sleep_until_ready_to_send(
         this: Arc<Mutex<Self>>,
-        cancellation_token: EventListener,
-    ) -> futures::channel::oneshot::Receiver<Arc<Mutex<Self>>> {
+        packet_sent_rx: &mut tokio::sync::watch::Receiver<bool>,
+    ) {
         assert!(
             !this.lock().has_bandwidth_available(),
             "we should only wait when no bandwidth is available"
         );
 
-        let (tx, rx) = futures::channel::oneshot::channel();
+        // Ensure this method is never executed concurrently, to prevent two callers from waiting
+        // at the same time and thinking they are both allowed to send at the end
         let semaphore = this.lock().sleep_until_ready_to_send_semaphore.clone();
-        async_rt::spawn(async move {
-            // Only one task at a time may continue after this line (they will wait in order,
-            // because the semaphore is fair)
-            let _permit = semaphore.acquire().await;
+        let _permit = semaphore.acquire().await;
 
-            let duration_until_enough_bandwidth = this
-                .lock()
-                .pacer
-                .lock()
-                .duration_until_can_send(Instant::now());
+        let duration_until_enough_bandwidth = this
+            .lock()
+            .pacer
+            .lock()
+            .duration_until_can_send(Instant::now());
 
-            // Sleep until enough bandwidth or until cancelled, whichever comes first
+        // Sleep until enough bandwidth or until the packet gets sent, whichever comes first
+        select_biased! {
+            _ = packet_sent_rx.changed().fuse() => return,
+            _ = async_rt::time::sleep(duration_until_enough_bandwidth).fuse() => {}
+        }
+
+        // Concurrency: keep the one-liner to shorten the lock on `this`
+        let notifier_for_link_up = this.lock().status.notifier_for_link_up();
+        if let Some(notifier_for_link_up) = notifier_for_link_up {
+            // Wait until the link comes up or until the packet gets sent, whichever comes first
             select_biased! {
-                _ = cancellation_token.fuse() => {}
-                _ = async_rt::time::sleep(duration_until_enough_bandwidth).fuse() => {}
+                _ = packet_sent_rx.changed().fuse() => {},
+                _ = notifier_for_link_up.fuse() => {}
             }
-
-            // Concurrency: keep the one-liner to shorten the lock on `this`
-            let notifier_for_link_up = this.lock().status.notifier_for_link_up();
-            if let Some(notifier_for_link_up) = notifier_for_link_up {
-                // The link is currently down, so we need to wait for it to be back up
-                notifier_for_link_up.await.ok();
-            }
-
-            let notify_packet_sent = this.lock().notify_packet_sent.clone();
-
-            // Let observers know that the link is ready to send
-            tx.send(this).ok();
-
-            // Only end the task after the packet has been sent. Otherwise, packets that are waiting
-            // will think they can be sent too because "there is available bandwidth".
-            notify_packet_sent.listen().await
-        });
-
-        rx
+        }
     }
 
     pub(crate) fn has_bandwidth_available(&mut self) -> bool {
@@ -252,5 +275,20 @@ impl PacketPacer {
         self.last_send = Some(SendingPacket {
             send_done: now + Duration::from_millis(send_duration_ms.ceil() as u64),
         });
+    }
+}
+
+pub(crate) struct OutgoingPacket {
+    pub(crate) src_node: Arc<Node>,
+    pub(crate) data: InTransitData,
+    pub(crate) anomalies: PacketAnomalies,
+    pub(crate) preferred_links: VecDeque<Arc<Mutex<NetworkLink>>>,
+    pub(crate) sent_tx: tokio::sync::watch::Sender<bool>,
+    pub(crate) sent_rx: tokio::sync::watch::Receiver<bool>,
+}
+
+impl OutgoingPacket {
+    pub(crate) fn already_sent(&self) -> bool {
+        *self.sent_rx.borrow()
     }
 }
