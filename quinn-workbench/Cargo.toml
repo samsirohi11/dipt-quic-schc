@@ -13,12 +13,16 @@ rt-custom = ["in-memory-network/rt-custom"]
 [dependencies]
 anyhow.workspace = true
 async-lock.workspace = true
+base64.workspace = true
 cfg-if.workspace = true
 clap.workspace = true
 event-listener.workspace = true
 fastrand.workspace = true
 futures.workspace = true
 in-memory-network = { path = "../in-memory-network" }
+rust-coreconf = { path = "../schc-coreconf/coreconf" }
+schc = { path = "../schc-coreconf/schc", package = "schc_r_c" }
+schc-coreconf = { path = "../schc-coreconf" }
 quinn = { workspace = true, features = ["rustls-ring", "platform-verifier"] }
 quinn-proto.workspace = true
 rustls.workspace = true

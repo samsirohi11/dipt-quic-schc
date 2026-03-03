@@ -13,6 +13,7 @@ use std::sync::Arc;
 use std::time::Duration;
 
 mod client;
+mod schc_transport;
 mod server;
 pub mod simulation;
 
@@ -43,6 +44,11 @@ pub async fn run_and_report_stats(quic_options: &QuicOpt) -> anyhow::Result<()> 
     print_node_stats(&verified_simulation, server_node, client_node);
     print_max_buffer_usage_per_node(&verified_simulation);
     print_link_stats(&verified_simulation, &network);
+    if quic_options.schc_enabled
+        && let Some(stats) = simulation.schc_stats.as_deref()
+    {
+        schc_transport::print_summary(stats);
+    }
 
     const DISPLAY_MAX_ERRORS: usize = 10;
     if !verified_simulation.non_fatal_errors.is_empty() {

@@ -3,8 +3,7 @@ use anyhow::Context;
 use fastrand::Rng;
 use futures::channel::mpsc::UnboundedReceiver;
 use in_memory_network::async_rt;
-use in_memory_network::quinn_interop::InMemoryUdpSocket;
-use quinn::Endpoint;
+use quinn::{AsyncUdpSocket, Endpoint};
 use rustls::pki_types::{CertificateDer, PrivateKeyDer};
 use std::sync::Arc;
 
@@ -234,7 +233,7 @@ pub fn server_listen(
 pub fn server_endpoint(
     cert: CertificateDer<'static>,
     key: PrivateKeyDer<'static>,
-    server_socket: InMemoryUdpSocket,
+    server_socket: Arc<dyn AsyncUdpSocket>,
     quinn_config: &QuinnJsonConfig,
     quinn_rng: &mut Rng,
 ) -> anyhow::Result<Endpoint> {
@@ -246,7 +245,7 @@ pub fn server_endpoint(
     Endpoint::new_with_abstract_socket(
         crate::quic::endpoint_config(seed),
         Some(server_config),
-        Arc::new(server_socket),
+        server_socket,
         async_rt::active_rt(),
     )
     .context("failed to create server endpoint")

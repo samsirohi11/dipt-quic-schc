@@ -1,5 +1,6 @@
-use anyhow::{Context, bail};
+use anyhow::{bail, Context};
 use clap::Parser;
+use regex::Regex;
 use std::path::PathBuf;
 use std::process::Command;
 
@@ -170,14 +171,19 @@ fn run_quinn_workbench(
     let replay_log = std::fs::read_to_string("replay-log.json")
         .context("failed to read replay-log.json")
         .map_err(TestError::Internal)?;
+    let normalized_stdout = normalize_quic_debug_values(&stdout);
 
     let mut stdout_diff = None;
     match test_case.expected_stdout {
         Some(expected_stdout) => {
-            if expected_stdout != stdout {
+            let normalized_expected = normalize_quic_debug_values(&expected_stdout);
+            if normalized_expected != normalized_stdout {
                 println!("... calculating stdout diff");
                 if quiet < 2 {
-                    stdout_diff = Some(diff::diff_to_string(&expected_stdout, &stdout));
+                    stdout_diff = Some(diff::diff_to_string(
+                        &normalized_expected,
+                        &normalized_stdout,
+                    ));
                 } else {
                     stdout_diff = Some("<skipped>".to_string());
                 }
@@ -227,8 +233,47 @@ fn run_quinn_workbench(
     }
 }
 
+fn normalize_quic_debug_values(input: &str) -> String {
+    let quic_match_line = Regex::new(
+        r"^(?P<prefix>.*QUIC\.[^:]+ \[[^\]]+\]: packet=)(?P<packet>\S*)(?P<middle> target=)(?P<target>\S*)(?P<suffix>.*)$",
+    )
+    .expect("valid QUIC match-line regex");
+    let quic_pattern_line = Regex::new(r"^(?P<prefix>\s*-\s+Quic[A-Za-z0-9]+:\s+).*$")
+        .expect("valid QUIC pattern regex");
+    let quic_observed_pattern_line =
+        Regex::new(r"^(?P<prefix>\s*observed_pattern:\s+Quic[A-Za-z0-9]+:\s+).*$")
+            .expect("valid observed-pattern regex");
+    let quic_tv_line = Regex::new(
+        r"^(?P<prefix>\s*-\s+field\[\d+\] fid=QUIC\.[A-Z_]+:.* tv )(?P<tv>\S+)(?P<suffix>.*)$",
+    )
+    .expect("valid QUIC tv regex");
+
+    let mut out = String::with_capacity(input.len());
+    for line in input.lines() {
+        let normalized = if let Some(caps) = quic_match_line.captures(line) {
+            format!(
+                "{}<value>{}<value>{}",
+                &caps["prefix"], &caps["middle"], &caps["suffix"]
+            )
+        } else if let Some(caps) = quic_pattern_line.captures(line) {
+            format!("{}<value>", &caps["prefix"])
+        } else if let Some(caps) = quic_observed_pattern_line.captures(line) {
+            format!("{}<value>", &caps["prefix"])
+        } else if let Some(caps) = quic_tv_line.captures(line) {
+            format!("{}<value>{}", &caps["prefix"], &caps["suffix"])
+        } else {
+            line.to_string()
+        };
+
+        out.push_str(&normalized);
+        out.push('\n');
+    }
+
+    out
+}
+
 mod diff {
-    use console::{Style, style};
+    use console::{style, Style};
     use similar::{ChangeTag, TextDiff};
     use std::fmt::{self, Write};
 

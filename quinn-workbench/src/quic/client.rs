@@ -4,9 +4,8 @@ use async_lock::Semaphore;
 use fastrand::Rng;
 use in_memory_network::async_rt;
 use in_memory_network::async_rt::time::Instant;
-use in_memory_network::quinn_interop::InMemoryUdpSocket;
 use parking_lot::Mutex;
-use quinn::Endpoint;
+use quinn::{AsyncUdpSocket, Endpoint};
 use quinn_proto::crypto::rustls::QuicClientConfig;
 use quinn_proto::{ClientConfig, VarInt};
 use rustls::RootCertStore;
@@ -100,7 +99,7 @@ pub async fn run_connection(
 
 pub fn client_endpoint(
     server_cert: CertificateDer<'_>,
-    client_socket: InMemoryUdpSocket,
+    client_socket: Arc<dyn AsyncUdpSocket>,
     quinn_config: &QuinnJsonConfig,
     quinn_rng: &mut Rng,
 ) -> anyhow::Result<Endpoint> {
@@ -110,7 +109,7 @@ pub fn client_endpoint(
     let mut endpoint = Endpoint::new_with_abstract_socket(
         crate::quic::endpoint_config(seed),
         None,
-        Arc::new(client_socket),
+        client_socket,
         async_rt::active_rt(),
     )
     .context("failed to create client endpoint")?;

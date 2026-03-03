@@ -1,4 +1,4 @@
-use clap::{Parser, Subcommand};
+use clap::{Parser, Subcommand, ValueEnum};
 use std::net::IpAddr;
 use std::path::PathBuf;
 
@@ -54,6 +54,13 @@ pub struct NetworkOpt {
     pub network_events: PathBuf,
 }
 
+#[derive(ValueEnum, Debug, Clone, Copy, PartialEq, Eq)]
+pub enum SchcLearnerProfile {
+    Fast,
+    Balanced,
+    Strict,
+}
+
 #[derive(Parser, Debug, Clone)]
 pub struct QuicOpt {
     /// The number of requests that should be made
@@ -71,6 +78,38 @@ pub struct QuicOpt {
     /// The size of each response, in bytes
     #[arg(long, default_value_t = 1024)]
     pub response_size: usize,
+
+    /// Route QUIC UDP datagrams through SCHC compression/decompression
+    #[arg(
+        long,
+        default_value_t = false,
+        requires_all = ["schc_m_rules", "schc_app_rules", "schc_sid_file"]
+    )]
+    pub schc_enabled: bool,
+
+    /// Path to SCHC M-Rules SOR file used by manager state
+    #[arg(long)]
+    pub schc_m_rules: Option<PathBuf>,
+
+    /// Path to SCHC application rules SOR file for QUIC payload compression
+    #[arg(long)]
+    pub schc_app_rules: Option<PathBuf>,
+
+    /// Path to SCHC SID file used to parse SOR rules
+    #[arg(long)]
+    pub schc_sid_file: Option<PathBuf>,
+
+    /// Print per-packet SCHC transport tracing details
+    #[arg(long, default_value_t = false, requires = "schc_enabled")]
+    pub schc_verbose: bool,
+
+    /// Estimated RTT used by SCHC manager guard period logic
+    #[arg(long, default_value_t = 100)]
+    pub schc_estimated_rtt_ms: u64,
+
+    /// Enable staged SCHC learning with a preset profile
+    #[arg(long, value_enum, requires = "schc_enabled")]
+    pub schc_learner_profile: Option<SchcLearnerProfile>,
 
     #[command(flatten)]
     pub network: NetworkOpt,

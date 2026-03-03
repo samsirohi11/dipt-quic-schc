@@ -1,0 +1,86 @@
+--- Params ---
+* Quinn seed: 0
+* Network seed: 42
+* Network graph path: test-data/earth-moon/networkgraph-1orbiter-1moonasset.json
+* Network events path: test-data/earth-moon/events.json
+--- Network ---
+* Initial link statuses (derived from events):
+  * Earth1-MoonOrbiter1: UP
+  * MoonOrbiter1-Earth1: UP
+  * MoonOrbiter1-MoonAsset1: DOWN
+  * MoonAsset1-MoonOrbiter1: DOWN
+* Running connectivity check...
+* Connectivity check passed (packets arrived after 1800 ms and 1800 ms)
+--- SCHC over QUIC transport ---
+* Enabled QUIC SCHC mode
+* Rule learning sync enabled with balanced profile
+--- Requests ---
+0.00s CONNECT (conn = A)
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
+* SCHC decompress-pre: node=192.168.41.2:8080, role=server, direction=up, size=1244 bytes, rules=6
+* SCHC decompress-match: node=192.168.41.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
+* SCHC decompress-match: node=192.168.41.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
+* SCHC decompress: node=192.168.41.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
+* SCHC decompress-pre: node=192.168.41.2:8080, role=server, direction=up, size=1244 bytes, rules=6
+* SCHC decompress-match: node=192.168.41.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
+* SCHC decompress-match: node=192.168.41.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
+* SCHC decompress: node=192.168.41.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
+* SCHC decompress-pre: node=192.168.41.2:8080, role=server, direction=up, size=1244 bytes, rules=6
+* SCHC decompress-match: node=192.168.41.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
+* SCHC decompress-match: node=192.168.41.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
+* SCHC decompress: node=192.168.41.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
+--- Replay log ---
+* Replay log available at replay-log.json
+--- Node stats ---
+* Earth1 (client)
+  * Sent packets: 3 (3828 bytes)
+    | 0 packets duplicated in transit (0 bytes)
+    | 0 packets marked with the CE ECN codepoint in transit (0 bytes)
+    | 0 packets dropped in transit (0 bytes)
+  * Received packets: 0 (0 bytes)
+    | 0 packets received out of order (0 bytes)
+* MoonAsset1 (server)
+  * Sent packets: 0 (0 bytes)
+    | 0 packets duplicated in transit (0 bytes)
+    | 0 packets marked with the CE ECN codepoint in transit (0 bytes)
+    | 0 packets dropped in transit (0 bytes)
+  * Received packets: 3 (3828 bytes)
+    | 0 packets received out of order (0 bytes)
+--- Max buffer usage per node ---
+* MoonOrbiter1: 2552 bytes (0 packets dropped due to buffer being full)
+* Earth1: 1276 bytes (0 packets dropped due to buffer being full)
+* MoonAsset1: 0 bytes (0 packets dropped due to buffer being full)
+--- Link stats ---
+* Earth1-MoonOrbiter1:
+|-> Lost in transit 0 packets (0 bytes)
+|-> Max used bandwidth (bps): 20416 (0.20% of the link's bandwidth)
+* MoonAsset1-MoonOrbiter1:
+|-> Lost in transit 0 packets (0 bytes)
+|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+* MoonOrbiter1-Earth1:
+|-> Lost in transit 0 packets (0 bytes)
+|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+* MoonOrbiter1-MoonAsset1:
+|-> Lost in transit 0 packets (0 bytes)
+Error...
+|-> Max used bandwidth (bps): 20416 (0.20% of the link's bandwidth)
+--- SCHC summary ---
+* Tx packets: compressed=3, passthrough=0, compress failures=0
+* Tx header bytes: original=186, schc=144, saved=42 (22.58%)
+* Rx packets: decompressed=3, decompress failures=0
+* Rx header bytes: original=144, schc=39, saved=105 (72.92%)
+* Tx rule usage:
+  - 8/4: compressed=3
+Error: client connection errored
+
+Caused by:
+    0: client failed to connect to server
+    1: timed out

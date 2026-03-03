@@ -1,5 +1,4 @@
-QUIC Workbench
-==============
+# QUIC Workbench
 
 A command-line application to simulate QUIC connections in different scenarios (network topology and
 QUIC parameters). The simulation creates one or more connections, issues a fixed number of requests
@@ -15,8 +14,7 @@ from the client to the server, and streams the server's responses back to the cl
   synthetic pcap file, so you can examine the traffic in more detail using Wireshark.
 - Configurable network settings and QUIC parameters through reusable JSON config files (see
   `test-data` and [JSON config details](#json-config-details)).
-- Configurable simulation behavior through command-line arguments (see `cargo run --release --
-  --help`).
+- Configurable simulation behavior through command-line arguments (see `cargo run --release -- --help`).
 
 ## Getting started
 
@@ -67,6 +65,101 @@ cargo run --release --bin quinn-workbench -- \
   --server-ip-address 192.168.43.2 \
   --non-deterministic
 ```
+
+## SCHC (with CORECONF)
+
+This repository uses `schc-coreconf` as a submodule to test the implementation. Clone with:
+
+```bash
+git clone --recurse-submodules https://github.com/samsirohi11/dipt-quic-schc.git
+```
+
+Or if you have already cloned the repository:
+
+```bash
+git submodule update --init --recursive
+```
+
+SCHC transport wrapping is currently available only for the `quic` subcommand (not `ping` or `throughput`).
+
+Here's an example:
+
+```bash
+cargo run --release --bin quinn-workbench -- \
+  quic \
+  --network-graph test-data/earth-mars/networkgraph-fullmars.json \
+  --network-events test-data/earth-mars/events.json \
+  --client-ip-address 192.168.40.1 \
+  --server-ip-address 192.168.43.2 \
+  --requests 1 \
+  --schc-enabled \
+  --schc-m-rules test-data/schc/m-rules.sor \
+  --schc-app-rules test-data/schc/quic_rules.sor \
+  --schc-sid-file test-data/schc/ietf-schc@2026-01-12.sid
+```
+
+Where SCHC sits in the QUIC workbench pipeline:
+
+1. `quinn-workbench/src/quic/simulation.rs` creates the in-memory UDP sockets for client/server.
+2. If `--schc-enabled` is set, those sockets are wrapped by `schc_transport::socket_pair_for_quic(...)`.
+3. Quinn client/server endpoints are then built on top of these wrapped sockets, so SCHC is in the transport path between Quinn datagrams and the network.
+
+Outbound (send) path:
+
+- Quinn emits a QUIC UDP datagram.
+- SCHC transport builds the synthetic IPv6/UDP packet used for SCHC matching.
+- SCHC compresses headers, frames the result, and sends it on the in-memory network socket.
+
+Inbound (receive) path:
+
+- SCHC transport reads the framed SCHC packet from the network socket.
+- SCHC decodes/decompresses back to the produced IPv6/UDP packet.
+- The UDP payload (QUIC datagram bytes) is extracted and returned to Quinn.
+
+Optional staged learning/management sync during QUIC exchange:
+
+```bash
+--schc-learner-profile balanced
+```
+
+With learning enabled, the run prints a `--- schc_device learning report ---` section and
+synchronizes derived rules in two stages:
+
+- Stage 1: low-risk stable fields (IPv6/UDP) from observed packet stability.
+- Stage 2: QUIC short-header DCID specialization with stricter evidence requirements.
+
+```mermaid
+flowchart TD
+    Pkt[Observed Plain QUIC/UDP Packet] --> RuleLearner[SCHC Rule Learner]
+
+    RuleLearner -->|Crosses Threshold| Stage1[Stage-1: Stable Fields<br>IPv6, UDP Port]
+    RuleLearner -->|Crosses Threshold| Stage2[Stage-2: QUIC Short Header<br>DCID]
+
+    Stage1 -->|Derive precise rule| Coreconf[CORECONF RPC Builder]
+    Stage2 -->|Derive precise rule| Coreconf
+
+    Coreconf -->|duplicate-rule RPC| Peer[Remote SCHC Manager]
+    Coreconf -->|Apply Rule| Local[Local SCHC Manager]
+```
+
+The transport serializes a CORECONF `duplicate-rule` RPC and applies it on both sides so derived
+rules are available for subsequent packets. If a CID-specific rule does not match, normal rule
+selection falls back to the non-CID rule.
+
+Optional per-packet SCHC trace (rule IDs, packet directions, sizes, and match/debug context):
+
+```bash
+--schc-verbose
+```
+
+General tracing includes compression/decompression match stages (`compress-pre`,
+`compress-match`, `decompress-pre`, `decompress-match`) and with verbose the SCHC compressor tree traversal debug output, so rule-selection and decompression decisions are visible in test logs.
+
+QUIC SCHC transport carries compressed bit-length metadata internally so non-byte-aligned learned rules can be decoded without payload corruption.
+
+Every SCHC-enabled QUIC run also prints a `--- SCHC summary ---` section with Tx/Rx packet counts,
+failures, rule usage, and header-only compression savings percentages computed from parsed-field header bytes
+(which may exclude Version-Specific Data and other QUIC header fields, not whole packet sizes).
 
 ## JSON config details
 
@@ -141,7 +234,7 @@ Here's the meaning of the different parameters:
 - `ack_eliciting_threshold`: The number of ACK-eliciting packets an endpoint may receive
   without immediately sending an ACK. A high value is useful when expecting long streams of
   information from the server without sending anything back from the client.
-- `congestion_controller`: The congestion control algorithm to use. 
+- `congestion_controller`: The congestion control algorithm to use.
   Currently supported options: new_reno, cubic, ecn_reno, no_cc
 - `initial_congestion_window_packets`: If provided, the initial congestion window is set to the value
   times the base datagram size (1200 bytes). Default configuration is 10.

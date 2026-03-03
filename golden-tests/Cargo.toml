@@ -7,4 +7,5 @@ edition = "2024"
 anyhow.workspace = true
 clap.workspace = true
 console.workspace = true
+regex = "1.11.1"
 similar.workspace = true

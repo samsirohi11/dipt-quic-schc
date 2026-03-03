@@ -1,5 +1,6 @@
 use crate::config::NetworkConfig;
 use crate::config::cli::QuicOpt;
+use crate::quic::schc_transport;
 use crate::quic::{client, server};
 use anyhow::{Context, bail};
 use async_lock::Semaphore;
@@ -21,6 +22,7 @@ use std::time::Duration;
 #[derive(Default)]
 pub struct QuicSimulation {
     pub tracer_and_network: Option<(Arc<SimulationStepTracer>, Arc<InMemoryNetwork>)>,
+    pub schc_stats: Option<Arc<schc_transport::SchcTransportStats>>,
 }
 
 impl QuicSimulation {
@@ -120,11 +122,19 @@ impl QuicSimulation {
         // Let a server listen in the background
         let mut quinn_rng = Rng::with_seed(quinn_rng_seed);
         let server_host = network.host(quic_options.network.server_ip_address);
+        let client_host = network.host(quic_options.network.client_ip_address);
         let server_addr = server_host.quic_addr();
+        let (client_socket, server_socket, schc_stats) = schc_transport::socket_pair_for_quic(
+            quic_options,
+            network.udp_socket_for_node(client_host.clone()),
+            network.udp_socket_for_node(server_host.clone()),
+        )?;
+        self.schc_stats = schc_stats;
+
         let server = server::server_endpoint(
             cert.clone(),
             key.into(),
-            network.udp_socket_for_node(server_host.clone()),
+            server_socket,
             &quic_configs[server_host.id().as_ref()],
             &mut quinn_rng,
         )?;
@@ -132,10 +142,9 @@ impl QuicSimulation {
             server::server_listen(server.clone(), quic_options.response_size);
 
         // Create the client endpoint
-        let client_host = network.host(quic_options.network.client_ip_address);
         let client = client::client_endpoint(
             cert,
-            network.udp_socket_for_node(client_host.clone()),
+            client_socket,
             &quic_configs[client_host.id().as_ref()],
             &mut quinn_rng,
         )?;
