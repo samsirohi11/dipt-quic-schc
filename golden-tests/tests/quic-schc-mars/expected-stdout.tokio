@@ -42,218 +42,168 @@
 0.00s CONNECT (conn = A)
 * SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
 * SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1213 bytes
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1209 bytes, rules=6
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1209 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1209 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1213 -> 1248 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=1262 bytes, rules=6
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=8/4, size=1262 bytes, result=ok
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=8/4, size=1262 -> 1213 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=363 bytes, rules=6
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=8/4, size=363 bytes, result=ok
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=8/4, size=363 -> 314 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=200 bytes, rules=6
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=12/4, size=200 bytes, result=ok
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=12/4, size=200 -> 155 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=1209 bytes, rules=6
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=8/4, size=1209 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=8/4, size=1209 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=8/4, size=1213 -> 1248 bytes
 * SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
 * SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-7855378.55s WARN: no more network events left to process. Did the simulation keep running indefinitely?
-7855378.55s WARN: no more network events left to process. Did the simulation keep running indefinitely?
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=1262 bytes, rules=6
-* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=1262 bytes, result=ok
-* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1248 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
-* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1244 bytes, rules=6
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, stage=pre
-* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1244 bytes, result=ok
-* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1248 -> 1283 bytes
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=1262 -> 1213 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=310 bytes, rules=6
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=8/4, size=310 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=8/4, size=310 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=8/4, size=314 -> 349 bytes
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=197 bytes, rules=6
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=8/4, size=197 bytes, result=ok
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=8/4, size=197 -> 148 bytes
+1802.40s CONNECTED (conn = A)
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=200 bytes, rules=6
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=12/4, size=200 bytes, result=ok
+--- schc_device learning report ---
+* learner_profile: balanced
+* observed_packets: 4
+* matched_rule_histogram:
+  - 8/4: matches=3, short_matches=0
+  - 12/4: matches=1, short_matches=1
+* stage-1: duplicate-rule 12/4 -> 4/4
+* learned_modifications: base rule 12/4
+  - field[2] fid=IPV6.FL: mo Ignore -> Equal, cda ValueSent -> NotSent, tv 0x012345
+  - field[9] fid=IPV6.APP_IID: mo Ignore -> Equal, cda ValueSent -> NotSent, tv 0x0000000000000002
+  - field[10] fid=UDP.DEV_PORT: mo Ignore -> Equal, cda ValueSent -> NotSent, tv 0x1f90
+* CORECONF schc_device->schc_core.duplicate-rule synchronized derived rule 4/4 via duplicate-rule 12/4 -> 4/4 (rpc=67 bytes, message=73 bytes)
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=12/4, size=200 -> 155 bytes
+1802.40s GET /index.html (stream = A1)
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=106 bytes, rules=7
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=4/4, size=106 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=4/4, size=106 -> 49 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=151 bytes, rules=7
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=12/4, size=151 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=12/4, size=151 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=12/4, size=155 -> 186 bytes
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=1209 bytes, rules=7
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1209 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=1209 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=1213 -> 1248 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=108 bytes, rules=7
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=4/4, size=108 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=4/4, size=108 -> 51 bytes
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=144 bytes, rules=7
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=144 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=8/4, size=144 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=8/4, size=148 -> 183 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=271 bytes, rules=7
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=4/4, size=271 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=4/4, size=271 -> 214 bytes
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=151 bytes, rules=7
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=12/4, size=151 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=12/4, size=151 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=12/4, size=155 -> 186 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=92 bytes, rules=7
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=4/4, size=92 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=4/4, size=92 -> 35 bytes
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=45 bytes, rules=7
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=45 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=45 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=4/4, size=49 -> 92 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=1116 bytes, rules=7
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=4/4, size=1116 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=4/4, size=1116 -> 1059 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=47 bytes, rules=7
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=47 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=47 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=4/4, size=51 -> 94 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=210 bytes, rules=7
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=210 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=210 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=4/4, size=214 -> 257 bytes
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=96 bytes, rules=7
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=4/4, size=96 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=4/4, size=96 -> 39 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=31 bytes, rules=7
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=31 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=31 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=4/4, size=35 -> 78 bytes
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=116 bytes, rules=7
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=4/4, size=116 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=4/4, size=116 -> 59 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=1055 bytes, rules=7
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=1055 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=1055 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=4/4, size=1059 -> 1102 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=99 bytes, rules=7
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=4/4, size=99 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=4/4, size=99 -> 42 bytes
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=35 bytes, rules=7
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=35 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=35 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=4/4, size=39 -> 82 bytes
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=55 bytes, rules=7
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=55 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=55 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=4/4, size=59 -> 102 bytes
+* SCHC decompress-pre: node=192.168.40.1:8080, role=client, direction=down, size=38 bytes, rules=7
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=38 bytes, stage=pre
+* SCHC decompress-match: node=192.168.40.1:8080, role=client, direction=down, matched=4/4, size=38 bytes, result=ok
+* SCHC decompress: node=192.168.40.1:8080, role=client, direction=down, rule=4/4, size=42 -> 85 bytes
+5407.20s DONE (conn = A, request/response amount = 1)
+* SCHC compress-pre: node=192.168.40.1:8080, role=client, direction=up, size=99 bytes, rules=7
+* SCHC compress-match: node=192.168.40.1:8080, role=client, direction=up, matched=4/4, size=99 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.40.1:8080, role=client, direction=up, rule=4/4, size=99 -> 42 bytes
+5407.20s All connections closed
+* SCHC decompress-pre: node=192.168.43.2:8080, role=server, direction=up, size=38 bytes, rules=7
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=38 bytes, stage=pre
+* SCHC decompress-match: node=192.168.43.2:8080, role=server, direction=up, matched=4/4, size=38 bytes, result=ok
+* SCHC decompress: node=192.168.43.2:8080, role=server, direction=up, rule=4/4, size=42 -> 85 bytes
+* SCHC compress-pre: node=192.168.43.2:8080, role=server, direction=down, size=100 bytes, rules=7
+* SCHC compress-match: node=192.168.43.2:8080, role=server, direction=down, matched=4/4, size=100 bytes, result=ok
+* SCHC compress-note: using QUIC rule 4/4 with non-byte-aligned residue (12 bits) via SCHC bit-length framing
+* SCHC compress: node=192.168.43.2:8080, role=server, direction=down, rule=4/4, size=100 -> 43 bytes
 --- Replay log ---
 * Replay log available at replay-log.json
 --- Node stats ---
 * GND (client)
-  * Sent packets: 27 (34452 bytes)
+  * Sent packets: 8 (3142 bytes)
     | 0 packets duplicated in transit (0 bytes)
     | 0 packets marked with the CE ECN codepoint in transit (0 bytes)
     | 0 packets dropped in transit (0 bytes)
-  * Received packets: 0 (0 bytes)
+  * Received packets: 8 (3307 bytes)
     | 0 packets received out of order (0 bytes)
 * ING (server)
-  * Sent packets: 0 (0 bytes)
+  * Sent packets: 9 (3378 bytes)
     | 0 packets duplicated in transit (0 bytes)
     | 0 packets marked with the CE ECN codepoint in transit (0 bytes)
     | 0 packets dropped in transit (0 bytes)
-  * Received packets: 27 (34452 bytes)
-    | 1 packets received out of order (1276 bytes)
+  * Received packets: 8 (3142 bytes)
+    | 0 packets received out of order (0 bytes)
 --- Max buffer usage per node ---
-* GND: 1276 bytes (0 packets dropped due to buffer being full)
-* MRO: 1276 bytes (0 packets dropped due to buffer being full)
-* DSN: 0 bytes (0 packets dropped due to buffer being full)
-* ING: 0 bytes (0 packets dropped due to buffer being full)
+* ING: 525 bytes (0 packets dropped due to buffer being full)
+* GND: 260 bytes (0 packets dropped due to buffer being full)
+* DSN: 77 bytes (0 packets dropped due to buffer being full)
 * M20: 0 bytes (0 packets dropped due to buffer being full)
+* MRO: 0 bytes (0 packets dropped due to buffer being full)
 * MSL: 0 bytes (0 packets dropped due to buffer being full)
 * MVN: 0 bytes (0 packets dropped due to buffer being full)
 * ODY: 0 bytes (0 packets dropped due to buffer being full)
@@ -261,46 +211,46 @@
 --- Link stats ---
 * DSN-GND:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 14128 (0.00% of the link's bandwidth)
 * DSN-MRO:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 1020 (102.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 * DSN-MVN:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 1020 (102.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 202 (20.20% of the link's bandwidth)
 * DSN-ODY:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 146 (14.60% of the link's bandwidth)
 * DSN-TGO:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 1020 (102.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 992 (99.20% of the link's bandwidth)
 * GND-DSN:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 20416 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 13416 (0.00% of the link's bandwidth)
 * ING-M20:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 14128 (0.01% of the link's bandwidth)
 * M20-ING:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 20416 (0.02% of the link's bandwidth)
+|-> Max used bandwidth (bps): 12800 (0.01% of the link's bandwidth)
 * M20-MRO:
 |-> Lost in transit 0 packets (0 bytes)
 |-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 * M20-MVN:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 2736 (0.27% of the link's bandwidth)
 * M20-ODY:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 1464 (0.15% of the link's bandwidth)
 * M20-TGO:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 9928 (0.99% of the link's bandwidth)
 * MRO-DSN:
 |-> Lost in transit 0 packets (0 bytes)
 |-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 * MRO-M20:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 10208 (0.10% of the link's bandwidth)
+|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 * MRO-MSL:
 |-> Lost in transit 0 packets (0 bytes)
 |-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
@@ -318,52 +268,38 @@
 |-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 * MVN-DSN:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 2736 (0.27% of the link's bandwidth)
 * MVN-M20:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 10208 (0.10% of the link's bandwidth)
+|-> Max used bandwidth (bps): 1408 (0.01% of the link's bandwidth)
 * MVN-MSL:
 |-> Lost in transit 0 packets (0 bytes)
 |-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 * ODY-DSN:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 1464 (0.15% of the link's bandwidth)
 * ODY-M20:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 1464 (0.01% of the link's bandwidth)
 * ODY-MSL:
 |-> Lost in transit 0 packets (0 bytes)
 |-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 * TGO-DSN:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
+|-> Max used bandwidth (bps): 9928 (0.99% of the link's bandwidth)
 * TGO-M20:
 |-> Lost in transit 0 packets (0 bytes)
-|-> Max used bandwidth (bps): 10208 (0.10% of the link's bandwidth)
+|-> Max used bandwidth (bps): 9928 (0.10% of the link's bandwidth)
 * TGO-MSL:
 |-> Lost in transit 0 packets (0 bytes)
 |-> Max used bandwidth (bps): 0 (0.00% of the link's bandwidth)
 --- SCHC summary ---
-* Tx packets: compressed=27, passthrough=0, compress failures=0
-* Tx header bytes: original=1674, schc=1296, saved=378 (22.58%)
-* Rx packets: decompressed=27, decompress failures=0
-* Rx header bytes: original=1296, schc=351, saved=945 (72.92%)
-* Tx rule usage:
-  - 8/4: compressed=27
---- Errors(showing 10 of 27) ---
-* network node `DSN` sent packet `ca71d87c-7698-3989-7e5b-a61552085fc6` through link `DSN-TGO`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `7e2b908a-36ff-4558-bd4a-4bc35a09b86c` through link `DSN-TGO`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `034ce541-dbd9-9145-ff1c-7147bfd448d1` through link `DSN-MVN`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `f37882d2-d6d5-2acb-d744-bba2ff42dda6` through link `DSN-TGO`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `26114d5a-0b8f-8b59-3943-2eb9cf0b732b` through link `DSN-MVN`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `0192b6dd-7f72-af2b-8836-a24c3fa95b3b` through link `DSN-TGO`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `3ae3d5ef-ed2d-a10d-b7b1-998278c84872` through link `DSN-MVN`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `b8d511d0-6154-963f-d583-6b6b74d67c54` through link `DSN-TGO`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `68e9c501-c693-d7e0-0828-f54c62d32f02` through link `DSN-MVN`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-* network node `DSN` sent packet `776a1048-a0c9-f6ec-a694-d3f3c239b8d1` through link `DSN-TGO`, but the link didn't have enough available bandwidth (link bandwidth is 1000 bps, but used bandwidth was 1020 bps)
-Error...
-Error: client connection errored
-
-Caused by:
-    0: client failed to connect to server
-    1: timed out
+* Tx packets: compressed=17, passthrough=0, compress failures=0
+* Tx header bytes: original=955, schc=220, saved=735 (76.96%)
+* Rx packets: decompressed=16, decompress failures=0
+* Rx header bytes: original=917, schc=80, saved=837 (91.28%)
+* Note: savings are based on parsed fields and may exclude Version-Specific Data and other QUIC header fields.
+* Rule usage:
+  - 4/4: compressed=10
+  - 8/4: compressed=5
+  - 12/4: compressed=2

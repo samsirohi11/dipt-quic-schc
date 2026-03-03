@@ -53,7 +53,7 @@
     "data": {
       "packet_id": "ca71d87c-7698-3989-7e5b-a61552085fc6",
       "packet_number": 0,
-      "packet_size_bytes": 1276,
+      "packet_size_bytes": 1241,
       "node_id": "Earth1"
     }
   },
@@ -72,7 +72,7 @@
     "data": {
       "packet_id": "ca71d87c-7698-3989-7e5b-a61552085fc6",
       "packet_number": 0,
-      "packet_size_bytes": 1276,
+      "packet_size_bytes": 1241,
       "node_id": "MoonOrbiter1"
     }
   },
@@ -91,7 +91,7 @@
     "data": {
       "packet_id": "ca71d87c-7698-3989-7e5b-a61552085fc6",
       "packet_number": 0,
-      "packet_size_bytes": 1276,
+      "packet_size_bytes": 1241,
       "node_id": "MoonAsset1"
     }
   },
@@ -101,748 +101,897 @@
     "data": {
       "packet_id": "ca71d87c-7698-3989-7e5b-a61552085fc6",
       "packet_number": 0,
-      "packet_size_bytes": 1276,
+      "packet_size_bytes": 1241,
       "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 3600000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 3600000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 4500001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 4500001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 5400000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 5400000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 7200001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 7200001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 10800000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 10800000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 11700001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 11700001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 12600000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 12600000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 14400001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 14400001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 18000000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 18000000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 18900001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 18900001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 19800000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 19800000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 21600001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 21600001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 23760000000000,
+    "relative_time_ns": 1800000000,
     "type": "packetInNode",
     "data": {
       "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
       "packet_number": 1,
-      "packet_size_bytes": 1276,
-      "node_id": "Earth1"
+      "packet_size_bytes": 1241,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 23760000000000,
+    "relative_time_ns": 1800000000,
     "type": "packetInNode",
     "data": {
       "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
       "packet_number": 2,
-      "packet_size_bytes": 1276,
+      "packet_size_bytes": 338,
+      "node_id": "MoonAsset1"
+    }
+  },
+  {
+    "relative_time_ns": 1800000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 1800000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "3f10de1f-fa55-f931-e103-633e23a5f511",
+      "packet_number": 3,
+      "packet_size_bytes": 183,
+      "node_id": "MoonAsset1"
+    }
+  },
+  {
+    "relative_time_ns": 1801000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 1802000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "3f10de1f-fa55-f931-e103-633e23a5f511",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 2100000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
+      "packet_number": 1,
+      "packet_size_bytes": 1241,
+      "node_id": "MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 2100000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 2101000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
+      "packet_number": 2,
+      "packet_size_bytes": 338,
+      "node_id": "MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 2101000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 2102000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "3f10de1f-fa55-f931-e103-633e23a5f511",
+      "packet_number": 3,
+      "packet_size_bytes": 183,
+      "node_id": "MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 2102000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "3f10de1f-fa55-f931-e103-633e23a5f511",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 3600000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
+      "packet_number": 1,
+      "packet_size_bytes": 1241,
       "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 23760000000000,
-    "type": "packetInTransit",
+    "relative_time_ns": 3600000000,
+    "type": "packetDeliveredToApplication",
     "data": {
       "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
+      "packet_number": 1,
+      "packet_size_bytes": 1241,
+      "node_id": "Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 3600000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "df65585b-553a-9a72-a615-1d9952ccf4c6",
+      "packet_number": 4,
+      "packet_size_bytes": 1241,
+      "node_id": "Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 3600000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "df65585b-553a-9a72-a615-1d9952ccf4c6",
       "node_id": "Earth1",
       "link_id": "Earth1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 23760002000000,
-    "type": "packetInTransit",
+    "relative_time_ns": 3601000000,
+    "type": "packetInNode",
     "data": {
       "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
+      "packet_number": 2,
+      "packet_size_bytes": 338,
+      "node_id": "Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 3601000000,
+    "type": "packetDeliveredToApplication",
+    "data": {
+      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
+      "packet_number": 2,
+      "packet_size_bytes": 338,
+      "node_id": "Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 3601000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "d11527c3-f78d-45c8-e3b6-71790a74eee5",
+      "packet_number": 5,
+      "packet_size_bytes": 172,
+      "node_id": "Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 3601000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "d11527c3-f78d-45c8-e3b6-71790a74eee5",
       "node_id": "Earth1",
       "link_id": "Earth1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 23761500000000,
+    "relative_time_ns": 3601000000,
     "type": "packetInNode",
     "data": {
-      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
-      "packet_number": 1,
-      "packet_size_bytes": 1276,
-      "node_id": "MoonOrbiter1"
+      "packet_id": "0fee92f4-599b-99d0-b173-b877eb6e00ca",
+      "packet_number": 6,
+      "packet_size_bytes": 183,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 23761502000000,
+    "relative_time_ns": 3601000000,
     "type": "packetInNode",
     "data": {
-      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
-      "packet_number": 2,
-      "packet_size_bytes": 1276,
-      "node_id": "MoonOrbiter1"
+      "packet_id": "f29fc657-5ba8-25cd-a945-b539f0fa8a3a",
+      "packet_number": 7,
+      "packet_size_bytes": 77,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 25200000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 3602000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "3f10de1f-fa55-f931-e103-633e23a5f511",
+      "packet_number": 3,
+      "packet_size_bytes": 183,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 25200000000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
-    }
-  },
-  {
-    "relative_time_ns": 26100001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 26100001000000,
-    "type": "networkEvent",
-    "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
-    }
-  },
-  {
-    "relative_time_ns": 26100001000000,
+    "relative_time_ns": 3602000000,
     "type": "packetInTransit",
     "data": {
-      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
+      "packet_id": "0fee92f4-599b-99d0-b173-b877eb6e00ca",
+      "node_id": "Earth1",
+      "link_id": "Earth1-MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 3602000000,
+    "type": "packetDeliveredToApplication",
+    "data": {
+      "packet_id": "3f10de1f-fa55-f931-e103-633e23a5f511",
+      "packet_number": 3,
+      "packet_size_bytes": 183,
+      "node_id": "Earth1"
+    }
+  },
+  {
+    "relative_time_ns": 3603000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "f29fc657-5ba8-25cd-a945-b539f0fa8a3a",
+      "node_id": "Earth1",
+      "link_id": "Earth1-MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 5100000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "df65585b-553a-9a72-a615-1d9952ccf4c6",
+      "packet_number": 4,
+      "packet_size_bytes": 1241,
+      "node_id": "MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 5100000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "df65585b-553a-9a72-a615-1d9952ccf4c6",
       "node_id": "MoonOrbiter1",
       "link_id": "MoonOrbiter1-MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 26100003000000,
+    "relative_time_ns": 5101000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "d11527c3-f78d-45c8-e3b6-71790a74eee5",
+      "packet_number": 5,
+      "packet_size_bytes": 172,
+      "node_id": "MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 5101000000,
     "type": "packetInTransit",
     "data": {
-      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
+      "packet_id": "d11527c3-f78d-45c8-e3b6-71790a74eee5",
       "node_id": "MoonOrbiter1",
       "link_id": "MoonOrbiter1-MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 26100301000000,
+    "relative_time_ns": 5102000000,
     "type": "packetInNode",
     "data": {
-      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
-      "packet_number": 1,
-      "packet_size_bytes": 1276,
-      "node_id": "MoonAsset1"
+      "packet_id": "0fee92f4-599b-99d0-b173-b877eb6e00ca",
+      "packet_number": 6,
+      "packet_size_bytes": 183,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 26100301000000,
-    "type": "packetDeliveredToApplication",
+    "relative_time_ns": 5102000000,
+    "type": "packetInTransit",
     "data": {
-      "packet_id": "b87970ed-be88-4e6a-4052-cb14ca8875c9",
-      "packet_number": 1,
-      "packet_size_bytes": 1276,
-      "node_id": "MoonAsset1"
+      "packet_id": "0fee92f4-599b-99d0-b173-b877eb6e00ca",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 26100303000000,
+    "relative_time_ns": 5103000000,
     "type": "packetInNode",
     "data": {
-      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
-      "packet_number": 2,
-      "packet_size_bytes": 1276,
+      "packet_id": "f29fc657-5ba8-25cd-a945-b539f0fa8a3a",
+      "packet_number": 7,
+      "packet_size_bytes": 77,
+      "node_id": "MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 5103000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "f29fc657-5ba8-25cd-a945-b539f0fa8a3a",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-MoonAsset1"
+    }
+  },
+  {
+    "relative_time_ns": 5400000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "df65585b-553a-9a72-a615-1d9952ccf4c6",
+      "packet_number": 4,
+      "packet_size_bytes": 1241,
       "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 26100303000000,
+    "relative_time_ns": 5400000000,
     "type": "packetDeliveredToApplication",
     "data": {
-      "packet_id": "f7bad3d2-ceb0-ccc8-d3dd-0701229fcfc9",
-      "packet_number": 2,
-      "packet_size_bytes": 1276,
+      "packet_id": "df65585b-553a-9a72-a615-1d9952ccf4c6",
+      "packet_number": 4,
+      "packet_size_bytes": 1241,
       "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 27000000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5400000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
+      "packet_id": "14d733f6-880c-d1d3-d0bf-498ca0efd175",
+      "packet_number": 8,
+      "packet_size_bytes": 75,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 27000000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5400000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "14d733f6-880c-d1d3-d0bf-498ca0efd175",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 28800001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5401000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "d11527c3-f78d-45c8-e3b6-71790a74eee5",
+      "packet_number": 5,
+      "packet_size_bytes": 172,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 28800001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5401000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
+      "packet_id": "d11527c3-f78d-45c8-e3b6-71790a74eee5",
+      "packet_number": 5,
+      "packet_size_bytes": 172,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 32400000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5401000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "26114d5a-0b8f-8b59-3943-2eb9cf0b732b",
+      "packet_number": 9,
+      "packet_size_bytes": 242,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 32400000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5401000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
+      "packet_id": "26114d5a-0b8f-8b59-3943-2eb9cf0b732b",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 33300001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5402000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
+      "packet_id": "0fee92f4-599b-99d0-b173-b877eb6e00ca",
+      "packet_number": 6,
+      "packet_size_bytes": 183,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 33300001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5402000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "0fee92f4-599b-99d0-b173-b877eb6e00ca",
+      "packet_number": 6,
+      "packet_size_bytes": 183,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 34200000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5402000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
+      "packet_id": "a508c508-0294-9b1a-d7ff-a3170aa4fa08",
+      "packet_number": 10,
+      "packet_size_bytes": 63,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 34200000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5402000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "a508c508-0294-9b1a-d7ff-a3170aa4fa08",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 36000001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5403000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "f29fc657-5ba8-25cd-a945-b539f0fa8a3a",
+      "packet_number": 7,
+      "packet_size_bytes": 77,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 36000001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5403000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
+      "packet_id": "f29fc657-5ba8-25cd-a945-b539f0fa8a3a",
+      "packet_number": 7,
+      "packet_size_bytes": 77,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 39600000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5403000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "dc8801b0-0fc8-056d-54d0-1e6b5f9eb9f8",
+      "packet_number": 11,
+      "packet_size_bytes": 1087,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 39600000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5403000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
+      "packet_id": "dc8801b0-0fc8-056d-54d0-1e6b5f9eb9f8",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 40500001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5700000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
+      "packet_id": "14d733f6-880c-d1d3-d0bf-498ca0efd175",
+      "packet_number": 8,
+      "packet_size_bytes": 75,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 40500001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5700000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "14d733f6-880c-d1d3-d0bf-498ca0efd175",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
     }
   },
   {
-    "relative_time_ns": 41400000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5701000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
+      "packet_id": "26114d5a-0b8f-8b59-3943-2eb9cf0b732b",
+      "packet_number": 9,
+      "packet_size_bytes": 242,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 41400000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5701000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "26114d5a-0b8f-8b59-3943-2eb9cf0b732b",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
     }
   },
   {
-    "relative_time_ns": 43200001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5702000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "a508c508-0294-9b1a-d7ff-a3170aa4fa08",
+      "packet_number": 10,
+      "packet_size_bytes": 63,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 43200001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5702000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
+      "packet_id": "a508c508-0294-9b1a-d7ff-a3170aa4fa08",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
     }
   },
   {
-    "relative_time_ns": 46800000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5703000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "dc8801b0-0fc8-056d-54d0-1e6b5f9eb9f8",
+      "packet_number": 11,
+      "packet_size_bytes": 1087,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 46800000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 5703000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
+      "packet_id": "dc8801b0-0fc8-056d-54d0-1e6b5f9eb9f8",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
     }
   },
   {
-    "relative_time_ns": 47700001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7200000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
+      "packet_id": "14d733f6-880c-d1d3-d0bf-498ca0efd175",
+      "packet_number": 8,
+      "packet_size_bytes": 75,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 47700001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7200000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "14d733f6-880c-d1d3-d0bf-498ca0efd175",
+      "packet_number": 8,
+      "packet_size_bytes": 75,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 48600000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7201000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
+      "packet_id": "26114d5a-0b8f-8b59-3943-2eb9cf0b732b",
+      "packet_number": 9,
+      "packet_size_bytes": 242,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 48600000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7201000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "26114d5a-0b8f-8b59-3943-2eb9cf0b732b",
+      "packet_number": 9,
+      "packet_size_bytes": 242,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 50400001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7201000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "8c6aa3da-f78f-20fb-c153-bbccb6303443",
+      "packet_number": 12,
+      "packet_size_bytes": 67,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 50400001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7201000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
+      "packet_id": "8c6aa3da-f78f-20fb-c153-bbccb6303443",
+      "node_id": "Earth1",
+      "link_id": "Earth1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 54000000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7202000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "a508c508-0294-9b1a-d7ff-a3170aa4fa08",
+      "packet_number": 10,
+      "packet_size_bytes": 63,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 54000000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7202000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
+      "packet_id": "a508c508-0294-9b1a-d7ff-a3170aa4fa08",
+      "packet_number": 10,
+      "packet_size_bytes": 63,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 54900001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7202000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
+      "packet_id": "f63229ec-ef06-0f03-c869-28ef93c421b9",
+      "packet_number": 13,
+      "packet_size_bytes": 87,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 54900001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7202000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "f63229ec-ef06-0f03-c869-28ef93c421b9",
+      "node_id": "Earth1",
+      "link_id": "Earth1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 55800000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7203000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
+      "packet_id": "dc8801b0-0fc8-056d-54d0-1e6b5f9eb9f8",
+      "packet_number": 11,
+      "packet_size_bytes": 1087,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 55800000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 7203000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "dc8801b0-0fc8-056d-54d0-1e6b5f9eb9f8",
+      "packet_number": 11,
+      "packet_size_bytes": 1087,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 57600001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 8701000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "8c6aa3da-f78f-20fb-c153-bbccb6303443",
+      "packet_number": 12,
+      "packet_size_bytes": 67,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 57600001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 8701000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
+      "packet_id": "8c6aa3da-f78f-20fb-c153-bbccb6303443",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 61200000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 8702000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "f63229ec-ef06-0f03-c869-28ef93c421b9",
+      "packet_number": 13,
+      "packet_size_bytes": 87,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 61200000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 8702000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
+      "packet_id": "f63229ec-ef06-0f03-c869-28ef93c421b9",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 62100001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9001000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
+      "packet_id": "8c6aa3da-f78f-20fb-c153-bbccb6303443",
+      "packet_number": 12,
+      "packet_size_bytes": 67,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 62100001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9001000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "d322cdc2-7ba4-fd36-3ae3-d5efed2da10d",
+      "packet_number": 14,
+      "packet_size_bytes": 70,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 63000000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9001000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
+      "packet_id": "8c6aa3da-f78f-20fb-c153-bbccb6303443",
+      "packet_number": 12,
+      "packet_size_bytes": 67,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 63000000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9001000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "d322cdc2-7ba4-fd36-3ae3-d5efed2da10d",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 64800001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9002000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "f63229ec-ef06-0f03-c869-28ef93c421b9",
+      "packet_number": 13,
+      "packet_size_bytes": 87,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 64800001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9002000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "up"
+      "packet_id": "f63229ec-ef06-0f03-c869-28ef93c421b9",
+      "packet_number": 13,
+      "packet_size_bytes": 87,
+      "node_id": "MoonAsset1"
     }
   },
   {
-    "relative_time_ns": 68400000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9301000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "Earth1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "d322cdc2-7ba4-fd36-3ae3-d5efed2da10d",
+      "packet_number": 14,
+      "packet_size_bytes": 70,
+      "node_id": "MoonOrbiter1"
     }
   },
   {
-    "relative_time_ns": 68400000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 9301000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonOrbiter1-Earth1",
-      "status": "down"
+      "packet_id": "d322cdc2-7ba4-fd36-3ae3-d5efed2da10d",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-Earth1"
     }
   },
   {
-    "relative_time_ns": 69300001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 10801000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "up"
+      "packet_id": "d322cdc2-7ba4-fd36-3ae3-d5efed2da10d",
+      "packet_number": 14,
+      "packet_size_bytes": 70,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 69300001000000,
-    "type": "networkEvent",
+    "relative_time_ns": 10801000000,
+    "type": "packetDeliveredToApplication",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "up"
+      "packet_id": "d322cdc2-7ba4-fd36-3ae3-d5efed2da10d",
+      "packet_number": 14,
+      "packet_size_bytes": 70,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 70200000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 10801000000,
+    "type": "packetInNode",
     "data": {
-      "linkId": "MoonOrbiter1-MoonAsset1",
-      "status": "down"
+      "packet_id": "5603cbdb-0b7b-8e19-dca0-1e8ae2fbf592",
+      "packet_number": 15,
+      "packet_size_bytes": 70,
+      "node_id": "Earth1"
     }
   },
   {
-    "relative_time_ns": 70200000000000,
-    "type": "networkEvent",
+    "relative_time_ns": 10801000000,
+    "type": "packetInTransit",
     "data": {
-      "linkId": "MoonAsset1-MoonOrbiter1",
-      "status": "down"
+      "packet_id": "5603cbdb-0b7b-8e19-dca0-1e8ae2fbf592",
+      "node_id": "Earth1",
+      "link_id": "Earth1-MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 12301000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "5603cbdb-0b7b-8e19-dca0-1e8ae2fbf592",
+      "packet_number": 15,
+      "packet_size_bytes": 70,
+      "node_id": "MoonOrbiter1"
+    }
+  },
+  {
+    "relative_time_ns": 12301000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "5603cbdb-0b7b-8e19-dca0-1e8ae2fbf592",
+      "node_id": "MoonOrbiter1",
+      "link_id": "MoonOrbiter1-MoonAsset1"
+    }
+  },
+  {
+    "relative_time_ns": 12601000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "5603cbdb-0b7b-8e19-dca0-1e8ae2fbf592",
+      "packet_number": 15,
+      "packet_size_bytes": 70,
+      "node_id": "MoonAsset1"
+    }
+  },
+  {
+    "relative_time_ns": 12601000000,
+    "type": "packetDeliveredToApplication",
+    "data": {
+      "packet_id": "5603cbdb-0b7b-8e19-dca0-1e8ae2fbf592",
+      "packet_number": 15,
+      "packet_size_bytes": 70,
+      "node_id": "MoonAsset1"
+    }
+  },
+  {
+    "relative_time_ns": 12601000000,
+    "type": "packetInNode",
+    "data": {
+      "packet_id": "e71ddc55-25e7-0fce-2431-472df6b8955d",
+      "packet_number": 16,
+      "packet_size_bytes": 71,
+      "node_id": "MoonAsset1"
+    }
+  },
+  {
+    "relative_time_ns": 12601000000,
+    "type": "packetInTransit",
+    "data": {
+      "packet_id": "e71ddc55-25e7-0fce-2431-472df6b8955d",
+      "node_id": "MoonAsset1",
+      "link_id": "MoonAsset1-MoonOrbiter1"
     }
   }
 ]
