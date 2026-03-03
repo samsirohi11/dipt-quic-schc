@@ -1,0 +1,3 @@
+[submodule "schc-coreconf"]
+	path = schc-coreconf
+	url = https://github.com/samsirohi11/schc-coreconf.git
