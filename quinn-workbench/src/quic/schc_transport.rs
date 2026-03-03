@@ -99,17 +99,11 @@ fn print_startup_summary(quic_opt: &QuicOpt, learner_policy: Option<LearnerProfi
         println!("* Verbose packet tracing enabled");
     }
     if let Some(policy) = learner_policy {
-        println!(
-            "* Rule learning sync enabled with {} profile",
-            policy.name
-        );
+        println!("* Rule learning sync enabled with {} profile", policy.name);
     }
 }
 
-fn path_option<'a>(
-    value: &'a Option<std::path::PathBuf>,
-    arg: &str,
-) -> anyhow::Result<&'a str> {
+fn path_option<'a>(value: &'a Option<std::path::PathBuf>, arg: &str) -> anyhow::Result<&'a str> {
     let Some(path) = value else {
         bail!("missing required option {arg} when SCHC mode is enabled");
     };

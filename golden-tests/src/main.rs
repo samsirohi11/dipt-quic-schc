@@ -1,4 +1,4 @@
-use anyhow::{bail, Context};
+use anyhow::{Context, bail};
 use clap::Parser;
 use regex::Regex;
 use std::path::PathBuf;
@@ -273,7 +273,7 @@ fn normalize_quic_debug_values(input: &str) -> String {
 }
 
 mod diff {
-    use console::{style, Style};
+    use console::{Style, style};
     use similar::{ChangeTag, TextDiff};
     use std::fmt::{self, Write};
 

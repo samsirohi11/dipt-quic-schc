@@ -203,9 +203,6 @@ fn insert_optional_u32(
     value: Option<i64>,
 ) {
     if let Some(value) = value {
-        entry.insert(
-            key.to_string(),
-            serde_json::Value::Number(value.into()),
-        );
+        entry.insert(key.to_string(), serde_json::Value::Number(value.into()));
     }
 }

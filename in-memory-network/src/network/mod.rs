@@ -385,11 +385,10 @@ impl InMemoryNetwork {
     ) -> Option<T> {
         // Prefer direct links if available
         for node_addr in node.addresses() {
-            if let Some(link) = self.links_by_addr.get(&(node_addr, dest)) {
-                if let ControlFlow::Break(value) = walk_fn(link) {
+            if let Some(link) = self.links_by_addr.get(&(node_addr, dest))
+                && let ControlFlow::Break(value) = walk_fn(link) {
                     return Some(value);
                 }
-            }
         }
 
         // Use routing when no direct links are available
@@ -433,8 +432,8 @@ impl InMemoryNetwork {
     ) {
         self.tracer.track_packet_in_node(&current_node, &data);
 
-        if let Some(udp_endpoint) = &current_node.udp_endpoint {
-            if udp_endpoint.addr == data.transmit.destination {
+        if let Some(udp_endpoint) = &current_node.udp_endpoint
+            && udp_endpoint.addr == data.transmit.destination {
                 // The packet has arrived to a quinn endpoint, so we forward it directly to the nodes's
                 // inbound queue (from where it will be automatically picked up by quinn)
                 udp_endpoint
@@ -445,7 +444,6 @@ impl InMemoryNetwork {
 
                 return;
             }
-        }
 
         // The packet needs to be transmitted to the next hop. We store it in the node's
         // outbound buffer, and it will automatically be picked up by a background task

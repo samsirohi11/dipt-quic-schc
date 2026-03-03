@@ -93,9 +93,7 @@ pub(super) fn select_stage_one_base_rule(
         .any(|rule| rule_match_count(rule, short_rule_match_counts) > 0);
     let mut candidates = active_rules
         .iter()
-        .filter(|rule| {
-            !requires_short_match || rule_match_count(rule, short_rule_match_counts) > 0
-        })
+        .filter(|rule| !requires_short_match || rule_match_count(rule, short_rule_match_counts) > 0)
         .collect::<Vec<_>>();
     candidates.sort_by(|a, b| {
         compare_stage_one_base_rule_candidates(a, b, rule_match_counts, short_rule_match_counts)
