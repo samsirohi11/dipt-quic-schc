@@ -426,9 +426,10 @@ impl SimulationVerifier {
         }
 
         if last_buffer_usage_update != Some(last_step_time)
-            && let Err(e) = self.update_max_buffer_usage() {
-                self.non_fatal_errors.push(e);
-            }
+            && let Err(e) = self.update_max_buffer_usage()
+        {
+            self.non_fatal_errors.push(e);
+        }
 
         let stats_by_node = self
             .nodes
