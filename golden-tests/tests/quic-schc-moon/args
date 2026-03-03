@@ -1,5 +1,5 @@
 quic
---requests 1
+--requests 5
 --network-graph test-data/earth-moon/networkgraph-1orbiter-1moonasset.json
 --network-events test-data/earth-moon/events.json
 --client-ip-address 192.168.40.1
@@ -8,6 +8,6 @@ quic
 --schc-m-rules test-data/schc/m-rules.sor
 --schc-app-rules test-data/schc/quic_rules.sor
 --schc-sid-file test-data/schc/ietf-schc@2026-01-12.sid
---schc-learner-profile balanced
+--schc-learner-profile fast
 --quinn-rng-seed 0
 --network-rng-seed 42
