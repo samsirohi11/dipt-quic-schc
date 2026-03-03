@@ -1,5 +1,5 @@
 quic
---requests 5
+--requests 1
 --network-graph test-data/earth-mars/networkgraph-fullmars.json
 --network-events test-data/earth-mars/events.json
 --client-ip-address 192.168.40.1
@@ -8,6 +8,6 @@ quic
 --schc-m-rules test-data/schc/m-rules.sor
 --schc-app-rules test-data/schc/quic_rules.sor
 --schc-sid-file test-data/schc/ietf-schc@2026-01-12.sid
---schc-learner-profile fast
+--schc-learner-profile balanced
 --quinn-rng-seed 0
 --network-rng-seed 42
